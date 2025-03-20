@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  password   String
+  email      String?  @unique
+  role       Role     @default(USER)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("users")
+}
+
+model MatchHistory {
+  id            Int      @id @default(autoincrement())
+  match         String
+  league        String
+  date          DateTime
+  halftimeGoals Int
+  htouHcap      Float    // Halftime Over/Under Handicap
+  htou01        Float    // Halftime Over 0.5 Odds
+  htou02        Float    // Halftime Under 0.5 Odds
+  htoe01        Float    // Halftime Odd Goals Odds
+  htoe02        Float    // Halftime Even Goals Odds
+  htbg01        Float    // Halftime BTTS Yes Odds
+  htbg02        Float    // Halftime BTTS No Odds
+  homeTeam      String
+  awayTeam      String
+  homeHalfGoals Int      // Goals scored by home team at halftime
+  awayHalfGoals Int      // Goals scored by away team at halftime
+  fulltimeGoals Int?     // Total goals at fulltime
+  homeFullGoals Int?     // Goals scored by home team at fulltime
+  awayFullGoals Int?     // Goals scored by away team at fulltime
+  ouHcap        Float?   // Fulltime Over/Under Handicap
+  ou01          Float?   // Fulltime Over Odds
+  ou02          Float?   // Fulltime Under Odds
+  oe01          Float?   // Fulltime Odd Goals Odds
+  oe02          Float?   // Fulltime Even Goals Odds
+  bg01          Float?   // Fulltime BTTS Yes Odds
+  bg02          Float?   // Fulltime BTTS No Odds
+  
+  @@index([league])
+  @@index([htouHcap, htou01, htou02])
+  @@index([htoe01, htoe02])
+  @@index([htbg01, htbg02])
+  @@index([ouHcap, ou01, ou02])
+  @@index([oe01, oe02])
+  @@index([bg01, bg02])
+  @@map("match_history")
+}
