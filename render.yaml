@@ -30,6 +30,7 @@ services:
     runtime: static
     plan: free
     buildCommand: cd frontend && bun install && bun run build
+    startCommand: cd frontend && bun run start
     autoDeploy: true
     envVars:
       - key: REACT_APP_API_URL
