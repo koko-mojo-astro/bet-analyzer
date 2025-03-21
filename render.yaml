@@ -1,6 +1,6 @@
 services:
   # Backend API service
-  - type: pserv
+  - type: web
     name: bet-analyser-api
     runtime: node
     plan: free
@@ -25,8 +25,8 @@ services:
         value: https://bet-analyser.onrender.com
 
   # Frontend service
-  - type: web
-    name: bet-analyser-frontend
+  - name: bet-analyser-frontend
+    type: web
     runtime: static
     plan: free
     buildCommand: cd frontend && bun install && bun run build
