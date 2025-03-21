@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "bet-analyser-frontend",
+      "name": "bet-analyzer",
       "dependencies": {
         "@emotion/react": "^11.11.0",
         "@emotion/styled": "^11.11.0",
