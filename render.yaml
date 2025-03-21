@@ -29,6 +29,7 @@ services:
     name: bet-analyser-frontend
     runtime: static
     buildCommand: cd frontend && bun install && bun run build
+    staticPublishPath: ./build
     autoDeploy: true
     envVars:
       - key: REACT_APP_API_URL
