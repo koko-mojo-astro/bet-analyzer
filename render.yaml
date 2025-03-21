@@ -26,14 +26,14 @@ services:
 
   # Frontend service
   - type: web
-    name: bet-analyser-frontend
+    name: bet-analyser
     runtime: static
     buildCommand: cd frontend && yarn install && yan run build
     staticPublishPath: ./build
     autoDeploy: true
     envVars:
       - key: REACT_APP_API_URL
-        value: https://api.bet-analyser.onrender.com
+        value: https://bet-analyser-api.onrender.com
     headers:
       - path: /*
         name: X-Frame-Options
