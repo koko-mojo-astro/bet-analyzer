@@ -5,8 +5,8 @@ services:
     runtime: node
     plan: free
     region: singapore
-    buildCommand: bun install && npx prisma generate && npx prisma migrate deploy
-    startCommand: bun run start
+    buildCommand: yarn install && npx prisma generate && npx prisma migrate deploy
+    startCommand: yarn run start
     autoDeploy: true
     envVars:
       - key: NODE_ENV
@@ -28,7 +28,7 @@ services:
   - type: web
     name: bet-analyser-frontend
     runtime: static
-    buildCommand: cd frontend && bun install && bun run build
+    buildCommand: cd frontend && yarn install && yan run build
     staticPublishPath: ./build
     autoDeploy: true
     envVars:
