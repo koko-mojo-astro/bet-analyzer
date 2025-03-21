@@ -25,17 +25,18 @@ services:
         value: https://bet-analyser.onrender.com
 
   # Frontend service
-  - name: bet-analyser-frontend
-    type: web
+  - type: web
+    name: bet-analyser-frontend
     runtime: static
-    plan: free
     buildCommand: cd frontend && bun install && bun run build
-    startCommand: cd frontend && bun run start
     autoDeploy: true
     envVars:
       - key: REACT_APP_API_URL
         value: https://api.bet-analyser.onrender.com
-
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
 # Database
 databases:
   - name: bet-analyser-db
